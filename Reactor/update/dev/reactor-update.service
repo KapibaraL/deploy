@@ -1,0 +1,7 @@
+[Unit]
+Description=Update Reactor frontend and backend
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/env bash /home/asus/Reactor/update/update_backend.sh
+ExecStart=/usr/bin/env bash /home/asus/Reactor/update/update_frontend.sh
