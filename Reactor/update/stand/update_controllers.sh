@@ -2,7 +2,7 @@
 set -e
 set -o pipefail
 
-BASE_DIR="/home/asus/Reactor"
+BASE_DIR="/home/mrcpi01/Reactor"
 
 REPO_DIR="$BASE_DIR/staging/deploy"
 REPO_URL="https://github.com/KapibaraL/deploy.git"
@@ -16,8 +16,8 @@ STATE_FILE="$(dirname "$BASE_DIR")/.config/Carbon_Ukraine/Backend/synthesis_stat
 
 LOCAL_FW_DIR="$BASE_DIR/firmware"
 
-MEGA_SUBDIR="Reactor/ControlHydraulicUnit/dev"
-NANO_SUBDIR="Reactor/ControlReactorUnit/dev"
+MEGA_SUBDIR="Reactor/ControlHydraulicUnit/stand"
+NANO_SUBDIR="Reactor/ControlReactorUnit/stand"
 
 MEGA_HEX="$REPO_DIR/$MEGA_SUBDIR/firmware.hex"
 NANO_HEX="$REPO_DIR/$NANO_SUBDIR/firmware.hex"
@@ -120,14 +120,7 @@ if [ "$NEED_MEGA" -eq 1 ]; then
 (
     cd "$AVRDUDE_DIR"
 
-    "$AVRDUDE" 22 0 23 1 5 \
-        -p m2560 \
-        -D \
-        -c wiring \
-        -v \
-        -P /dev/ttyAMA0 \
-        -b 115200 \
-        -U flash:w:"$MEGA_HEX":i
+    "$AVRDUDE" 25 1 23 0 5 -p m2560 -D -c wiring -v -P /dev/ttyAMA0 -b 115200 -U flash:w:"$MEGA_HEX":i
 ) 2>&1 | tee -a "$LOG_FILE"
 
     cp -f "$MEGA_REMOTE_VERSION_FILE" "$MEGA_LOCAL_VERSION_FILE"
@@ -139,13 +132,7 @@ if [ "$NEED_NANO" -eq 1 ]; then
 (
     cd "$AVRDUDE_DIR"
 
-    "$AVRDUDE" 22 1 23 0 5 \
-        -p m328p \
-        -c arduino \
-        -v \
-        -P /dev/ttyAMA0 \
-        -b 57600 \
-        -U flash:w:"$NANO_HEX":i
+    "$AVRDUDE" 25 0 23 1 5 -p m328p -c arduino -v -P /dev/ttyAMA0 -b 115200 -U flash:w:"$NANO_HEX":i
 ) 2>&1 | tee -a "$LOG_FILE"		
 
     cp -f "$NANO_REMOTE_VERSION_FILE" "$NANO_LOCAL_VERSION_FILE"
