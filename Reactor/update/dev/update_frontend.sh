@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-BASE_DIR="/home/asus/Reactor"
+BASE_DIR="$HOME/Reactor"
 
 REPO_DIR="$BASE_DIR/staging/deploy"
 REPO_URL="https://github.com/KapibaraL/deploy.git"
@@ -18,19 +18,17 @@ SOURCE_BIN="$REPO_DIR/$BIN_SUBDIR/$BIN_NAME"
 LOCAL_VERSION_FILE="$BASE_DIR/bin/reactor-frontend.version"
 REMOTE_VERSION_FILE="$REPO_DIR/$BIN_SUBDIR/interface.bin.version"
 
+STATE_FILE="$HOME/.config/Carbon_Ukraine/Backend/synthesis_state.json"
+
 mkdir -p "$BASE_DIR/bin" "$BACKUP_DIR" "$BASE_DIR/logs"
-
-STATE_FILE="$BASE_DIR/data/synthesis_state.json"
-
-# Для твоей текущей структуры можно явно:
-STATE_FILE="/home/asus/.config/Carbon_Ukraine/Backend/synthesis_state.json"
 
 if [ -f "$STATE_FILE" ]; then
     if grep -q '"state"[[:space:]]*:[[:space:]]*"running"' "$STATE_FILE"; then
-        echo "Synthesis is running. Frontend update is forbidden."
+        echo "Synthesis is running. Frontend update is forbidden." | tee -a "$LOG_FILE"
         exit 0
     fi
 fi
+
 echo "=== Updating frontend ===" | tee -a "$LOG_FILE"
 
 if [ ! -d "$REPO_DIR/.git" ]; then

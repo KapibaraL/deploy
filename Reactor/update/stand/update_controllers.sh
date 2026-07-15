@@ -2,7 +2,7 @@
 set -e
 set -o pipefail
 
-BASE_DIR="/home/mrcpi01/Reactor"
+BASE_DIR="$HOME/Reactor"
 
 REPO_DIR="$BASE_DIR/staging/deploy"
 REPO_URL="https://github.com/KapibaraL/deploy.git"
@@ -12,7 +12,7 @@ AVRDUDE="$AVRDUDE_DIR/avrdude"
 
 LOG_FILE="$BASE_DIR/logs/update_controllers.log"
 
-STATE_FILE="$(dirname "$BASE_DIR")/.config/Carbon_Ukraine/Backend/synthesis_state.json"
+STATE_FILE="$HOME/.config/Carbon_Ukraine/Backend/synthesis_state.json"
 
 LOCAL_FW_DIR="$BASE_DIR/firmware"
 

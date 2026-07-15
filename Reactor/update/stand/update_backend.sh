@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 set -e
 
-BASE_DIR="/home/mrcpi01/Reactor"
+BASE_DIR="$HOME/Reactor"
 
 REPO_DIR="$BASE_DIR/staging/deploy"
 REPO_URL="https://github.com/KapibaraL/deploy.git"
 
-BIN_SUBDIR="Reactor/Backend/stand"
+BIN_SUBDIR="Reactor/Backend/dev"
 BIN_NAME="backend"
 
 TARGET_BIN="$BASE_DIR/bin/reactor-backend"
@@ -19,11 +19,14 @@ LOCAL_VERSION_FILE="$BASE_DIR/bin/reactor-backend.version"
 REMOTE_VERSION_FILE="$REPO_DIR/$BIN_SUBDIR/backend.version"
 
 mkdir -p "$BASE_DIR/bin" "$BACKUP_DIR" "$BASE_DIR/logs"
-STATE_FILE="/home/mrcpi01/.config/Carbon_Ukraine/Backend/synthesis_state.json"
+
+STATE_FILE="$BASE_DIR/data/synthesis_state.json"
+
+STATE_FILE="~/.config/Carbon_Ukraine/Backend/synthesis_state.json"
 
 if [ -f "$STATE_FILE" ]; then
     if grep -q '"state"[[:space:]]*:[[:space:]]*"running"' "$STATE_FILE"; then
-        echo "Synthesis is running. Backend update is forbidden." | tee -a "$LOG_FILE"
+        echo "Synthesis is running. Backend update is forbidden."
         exit 0
     fi
 fi
