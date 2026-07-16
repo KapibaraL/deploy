@@ -6,7 +6,7 @@ BASE_DIR="$HOME/Reactor"
 REPO_DIR="$BASE_DIR/staging/deploy"
 REPO_URL="https://github.com/KapibaraL/deploy.git"
 
-BIN_SUBDIR="Reactor/Interface/dev"
+BIN_SUBDIR="Reactor/Interface/stand"
 BIN_NAME="interface.bin"
 
 TARGET_BIN="$BASE_DIR/bin/reactor-frontend"

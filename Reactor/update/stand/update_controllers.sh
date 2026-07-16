@@ -138,6 +138,7 @@ if [ "$NEED_NANO" -eq 1 ]; then
     cp -f "$NANO_REMOTE_VERSION_FILE" "$NANO_LOCAL_VERSION_FILE"
 fi
 
+
 echo "Starting backend service..." | tee -a "$LOG_FILE"
 systemctl --user daemon-reload
 systemctl --user start backend.service
