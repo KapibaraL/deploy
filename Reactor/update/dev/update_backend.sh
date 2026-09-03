@@ -96,5 +96,5 @@ systemctl --user start backend.service
 
 echo "Backend status:" | tee -a "$LOG_FILE"
 systemctl --user --no-pager status backend.service | tee -a "$LOG_FILE"
-
 echo "=== Done ===" | tee -a "$LOG_FILE"
+exit 10

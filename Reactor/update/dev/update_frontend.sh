@@ -90,3 +90,4 @@ echo "Restarting LightDM..." | tee -a "$LOG_FILE"
 sudo systemctl restart lightdm
 
 echo "=== Done ===" | tee -a "$LOG_FILE"
+exit 10

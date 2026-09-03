@@ -92,9 +92,9 @@ cp -f "$REMOTE_VERSION_FILE" "$LOCAL_VERSION_FILE"
 
 echo "Starting backend service..." | tee -a "$LOG_FILE"
 systemctl --user daemon-reload
-systemctl --user start backend.service
 
 echo "Backend status:" | tee -a "$LOG_FILE"
 systemctl --user --no-pager status backend.service | tee -a "$LOG_FILE"
 
 echo "=== Done ===" | tee -a "$LOG_FILE"
+exit 10

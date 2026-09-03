@@ -152,6 +152,6 @@ fi
 
 echo "Starting backend service..." | tee -a "$LOG_FILE"
 systemctl --user daemon-reload
-systemctl --user start backend.service
 
 echo "=== Done ===" | tee -a "$LOG_FILE"
+exit 10

@@ -3,6 +3,4 @@ Description=Update Reactor frontend and backend
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/env bash %h/Reactor/update/update_controllers.sh
-ExecStart=/usr/bin/env bash %h/Reactor/update/update_backend.sh
-ExecStart=/usr/bin/env bash %h/Reactor/update/update_frontend.sh
+ExecStart=/usr/bin/env bash %h/Reactor/update/update_all.sh
